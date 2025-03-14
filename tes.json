@@ -1,0 +1,61 @@
+{
+    "status": "true",
+    "message": "Data fetched successfully!",
+    "data": [
+        {
+            "id": "1",
+            "name": "Roger Federer",
+            "country": "Switzerland",
+            "city": "Basel",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        },
+        {
+            "id": "2",
+            "name": "Rafael Nadal",
+            "country": "Spain",
+            "city": "Madrid"
+        },
+        {
+            "id": "3",
+            "name": "Novak Djokovic",
+            "country": "Serbia",
+            "city": "Monaco",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        },
+        {
+            "id": "4",
+            "name": "Andy Murray",
+            "country": "United Kingdom",
+            "city": "London",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        },
+        {
+            "id": "5",
+            "name": "Maria Sharapova",
+            "country": "Russia",
+            "city": "Moscow",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        },
+        {
+            "id": "6",
+            "name": "Caroline Wozniacki",
+            "country": "Denmark",
+            "city": "Odense",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        },
+        {
+            "id": "7",
+            "name": "Eugenie Bouchard",
+            "country": "Canada",
+            "city": " Montreal",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        },
+        {
+            "id": "8",
+            "name": "Ana Ivanovic",
+            "country": "Serbia",
+            "city": "Belgrade",
+            "imgURL" : "https://cctv.bengkaliskab.go.id/off.jpg"
+        }
+    ]
+}

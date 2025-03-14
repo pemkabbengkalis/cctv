@@ -1,0 +1,62 @@
+[
+  {
+    "id": "25",
+    "embed": "mntn2UAiu0s",
+    "description": "PELABUHAN PENYEBERANGAN <br> AIR PUTIH - SEI SELARI <br> (ANTRIAN MOBIL)",
+    "status": "up",
+    "publish": "y",
+    "sort": "1",
+    "ip": "10.10.30.14",
+    "thumbnail": "https://img.youtube.com/vi/mntn2UAiu0s/mqdefault.jpg"
+  },
+  {
+    "id": "1",
+    "embed": "mhQV9p2wVx8",
+    "description": "PELABUHAN PENYEBERANGAN <br> AIR PUTIH - SEI SELARI <br> (ANTRIAN MOBIL DEPAN)",
+    "status": "up",
+    "publish": "y",
+    "sort": "2",
+    "ip": "10.10.30.18",
+    "thumbnail": "https://img.youtube.com/vi/mhQV9p2wVx8/mqdefault.jpg"
+  },
+  {
+    "id": "26",
+    "embed": "hjD877rQHKU",
+    "description": "PELABUHAN PENYEBERANGAN <br> AIR PUTIH - SEI SELARI <br> (ANTRIAN MOTOR)",
+    "status": "up",
+    "publish": "y",
+    "sort": "3",
+    "ip": "10.10.30.15",
+    "thumbnail": "https://img.youtube.com/vi/hjD877rQHKU/mqdefault.jpg"
+  },
+  {
+    "id": "27",
+    "embed": "YPIFGFZakVw",
+    "description": "PELABUHAN PENYEBERANGAN <br> SEI SELARI - AIR PUTIH <br> (ANTRIAN MOTOR)",
+    "status": "up",
+    "publish": "y",
+    "sort": "4",
+    "ip": "10.10.30.16",
+    "thumbnail": "https://img.youtube.com/vi/YPIFGFZakVw/mqdefault.jpg"
+  },
+  {
+    "id": "28",
+    "embed": "ZqOebxw9-ss",
+    "description": "PELABUHAN PENYEBERANGAN <br> SEI SELARI - AIR PUTIH <br> (ANTRIAN MOBIL)",
+    "status": "up",
+    "publish": "y",
+    "sort": "5",
+    "ip": "10.10.30.25",
+    "thumbnail": "https://img.youtube.com/vi/ZqOebxw9-ss/mqdefault.jpg"
+  },
+  {
+    "id": "29",
+    "embed": "skCE_QfnZTE",
+    "description": "PELABUHAN PENYEBERANGAN <br> SEI SELARI - AIR PUTIH <br> (PARKIR INAP MOBIL)",
+    "status": "up",
+    "publish": "y",
+    "sort": "6",
+    "ip": "10.10.30.17",
+    "thumbnail": "https://img.youtube.com/vi/skCE_QfnZTE/mqdefault.jpg"
+  }
+]
