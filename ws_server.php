@@ -7,6 +7,7 @@ use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
 use React\Socket\Server;
+use React\Socket\SecureServer;
 use React\EventLoop\Factory;
 use React\EventLoop\TimerInterface;
 
@@ -42,7 +43,6 @@ class CounterWebSocket implements MessageComponentInterface {
         $conn->close();
     }
 
-    // 🔥 Kirim data counter untuk tampilan utama
     public function broadcastCounterData() {
         $query = "SELECT date, SUM(count) as total_count FROM counter GROUP BY date";
         $result = $this->db->query($query);
@@ -61,7 +61,6 @@ class CounterWebSocket implements MessageComponentInterface {
         }
     }
 
-    // 🔥 Kirim data tabel (Quota dan Booking)
     public function broadcastTableData() {
         $query = "SELECT date, location, SUM(count) as total_count FROM counter GROUP BY date, location";
         $result = $this->db->query($query);
@@ -88,25 +87,35 @@ class CounterWebSocket implements MessageComponentInterface {
     }
 }
 
-// 🔥 Setup WebSocket Server
+// 🔹 Setup WebSocket Server dengan SSL
 $loop = Factory::create();
-$socket = new Server('192.168.43.120:6001', $loop);
+
+$context = [
+    'local_cert' => 'cert.pem',
+    'local_pk'   => 'privkey.pem',
+    'allow_self_signed' => false,
+    'verify_peer' => false
+];
+
+// 🔹 Gunakan ReactPHP Secure Server (SSL)
+$socket = new Server('0.0.0.0:8081', $loop);
+$secureSocket = new SecureServer($socket, $loop, $context);
+
 $counterServer = new CounterWebSocket();
 
 $server = new IoServer(
     new HttpServer(
         new WsServer($counterServer)
     ),
-    $socket,
+    $secureSocket,
     $loop
 );
 
-// ⏳ Timer untuk update real-time
+// 🔹 Timer untuk update real-time
 $loop->addPeriodicTimer(1, function() use ($counterServer) {
     $counterServer->broadcastCounterData();
     $counterServer->broadcastTableData();
 });
 
-echo "WebSocket Server running on ws://0.0.0.0:6001\n";
+echo "WebSocket Server running on wss://domain:8081\n";
 $server->run();
-

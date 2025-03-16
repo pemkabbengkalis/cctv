@@ -1,8 +1,10 @@
 <?php
 $host     = "localhost";
-$user     = "root";
-$password = "";
-$database = "cctv";
+$user     = "cctvuat";
+$password = "3oyMNEMpwPLB";
+$database = "cctvuat_cctv";
+$websocket= 'wss://cctvuat.bengkaliskab.go.id';
+
 
 $hari_ini = date("Y-m-d");
 

@@ -1,4 +1,5 @@
 <?php
+include "../connection.php";
 session_start();
 if (!isset($_SESSION['user_email'])) {
     header("Location: login.php");
@@ -140,7 +141,7 @@ if (!isset($_SESSION['user_email'])) {
     </script>
 
 <script>
-    let socket = new WebSocket("ws://192.168.43.120:6001");
+    let socket = new WebSocket($websocket);
 
     socket.onopen = function() {
         console.log("Connected to WebSocket");

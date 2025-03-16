@@ -261,7 +261,7 @@ include "connection.php";
     </main>
     <script>
 // Koneksi WebSocket
-const socket = new WebSocket("ws://192.168.43.120:6001");
+const socket = new WebSocket($websocket);
 
 socket.onopen = function() {
     console.log("WebSocket Connected!");
