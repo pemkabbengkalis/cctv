@@ -141,7 +141,7 @@ if (!isset($_SESSION['user_email'])) {
     </script>
 
 <script>
-    let socket = new WebSocket($websocket);
+    let socket = new WebSocket('<?php echo $websocket ?>');
 
     socket.onopen = function() {
         console.log("Connected to WebSocket");
