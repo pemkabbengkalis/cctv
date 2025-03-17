@@ -76,7 +76,7 @@ include "connection.php";
             font-size: 16px;
             color: white;
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 1px 8px;
         }
         .active {
             border-bottom: 2px solid #ffdd10;
@@ -178,7 +178,7 @@ include "connection.php";
         </div>
         <nav>
         <button class="active" onclick="showSection('cctv', this)">CCTV</button>
-        <button onclick="showSection('informasi', this)">Informasi Booking Tiket</button>
+        <button onclick="showSection('informasi', this)">Informasi Booking</button>
         <button onclick="showSection('wisata', this)">Wisata</button>
     </nav>
 
@@ -258,7 +258,7 @@ include "connection.php";
         
         
     </main>
-    <script>
+    <!-- <script>
 function redirectBasedOnDevice() {
     var userAgent = navigator.userAgent.toLowerCase();
     var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
@@ -270,7 +270,7 @@ function redirectBasedOnDevice() {
 
 // Run the function when the page loads
 redirectBasedOnDevice();
-</script>
+</script> -->
     <script>
 // Koneksi WebSocket
 const socket = new WebSocket('<?php echo $websocket ?>');
