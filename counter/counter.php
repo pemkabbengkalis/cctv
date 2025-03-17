@@ -57,7 +57,8 @@ if (!isset($_SESSION['user_email'])) {
         
         <div class="mt-8">
             <label for="date" class="block text-lg font-semibold text-blue-700">Pilih Tanggal:</label>
-            <input type="date" id="date" class="form-control mt-2 px-4 py-2 border-2 border-blue-500 rounded-lg shadow-sm focus:ring focus:ring-blue-300 bg-white text-blue-900">
+            <input type="date" id="date" class="form-control mt-2 px-4 py-2 border-2 border-blue-500 rounded-lg shadow-sm focus:ring focus:ring-blue-300 bg-white text-blue-900"
+           min="2025-04-01" max="2025-04-08">
         </div>
         
         <div class="value-counter mt-6 text-7xl font-bold text-blue-700" id="counter">0</div>
