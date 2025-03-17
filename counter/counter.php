@@ -73,6 +73,10 @@ if (!isset($_SESSION['user_email'])) {
         let count = 0;
         const userEmail = "<?php echo $_SESSION['user_email']; ?>";
 
+        function syncCounter() {
+            document.getElementById('counter').textContent = count;
+        }
+
         function updateCounter() {
             document.getElementById('counter').textContent = count;
             saveCounter();
@@ -152,7 +156,7 @@ if (!isset($_SESSION['user_email'])) {
         if (data.date === document.getElementById('date').value) {
             count = data.count;
             console.log("TEST");
-            //updateCounter();
+            syncCounter();
         }
     };
 
