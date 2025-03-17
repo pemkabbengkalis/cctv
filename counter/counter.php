@@ -152,7 +152,7 @@ if (!isset($_SESSION['user_email'])) {
         if (data.date === document.getElementById('date').value) {
             count = data.count;
             console.log("TEST");
-            updateCounter();
+            //updateCounter();
         }
     };
 
