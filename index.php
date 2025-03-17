@@ -9,7 +9,7 @@ include "connection.php";
     <meta name="author" content="Bengkaliskab">
     <link rel="icon" href="favicon.ico">
 
-    <title>CCTv BENGKALIS</title>
+    <title>CCTV BENGKALIS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -19,7 +19,7 @@ include "connection.php";
 
     <!-- Custom styles for this template -->
     <link href="./cctv_files/album.css" rel="stylesheet">
-
+    <script src="https://kit.fontawesome.com/ec6fd0ee66.js" crossorigin="anonymous"></script>
     <style>
       #customers {
   font-family: Arial, Helvetica, sans-serif;
@@ -43,6 +43,20 @@ include "connection.php";
   background-color: #04AA6D;
   color: white;
 }
+.nav-menu-a {
+    border-width: thin;
+    border-style: solid;
+    border-color: white;
+    width: 168px;
+    background-color: #dc3545;
+    padding: 8px;
+    border-radius: 9px;
+    color: white;
+    text-align: center;
+}
+.nav-menu-a a:hover{
+  text-decoration: none;
+}
     </style>
   </head>
 
@@ -56,6 +70,15 @@ include "connection.php";
             <strong style="color:white"> <img src="cctv.gif" height="30"> CCTV BENGKALIS </strong>  &nbsp;&nbsp;<span class="badge badge-danger">Live !</span>
           </a>
 
+
+          <div style="display:flex;gap:5px">
+          <a class="nav-menu-a" href="/" style="color:white;text-decoration: none;"><i class="fa-solid fa-video"></i> CCTV</a>
+          <a class="nav-menu-a" href="?page=booking" style="color:white;text-decoration: none;"><i class="fa-solid fa-calendar-days"></i> Informasi Booking</a>
+          <a class="nav-menu-a" href="?page=wisata" style="color:white;text-decoration: none;"><i class="fa-solid fa-map-location-dot"></i> Wisata Bengkalis</a>
+          </div>
+
+        
+
       </div>
     </header>
 
@@ -63,92 +86,108 @@ include "connection.php";
 
       <div class="album py-5 bg-light" style="min-height:90vh">
 
-        <div class="container">
+      <?php
+         if(isset($_GET['page']) && 'wisata' == $_GET['page']){
+          ?>
+<div class="container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d510462.89001508616!2d101.66618290734127!3d1.733987565257085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1swisata%20kabupaten%20bengkalis!5e0!3m2!1sid!2sid!4v1741760292316!5m2!1sid!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+          <?php
+         }
+          else if(isset($_GET['page']) && 'booking' == $_GET['page']){
+          ?>
+            <div class="container">
+            <h2>Informasi Booking Tiket</h2>
+            Pembookingan Tiket bisa kunjungi link di bawah ini 
+            <table id="customers">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Hari/Tanggal</th>
+            <th>Lokasi</th>
+            <th>Jumlah Booking</th>
+            <th>Sisa Quota</th>
+        </tr>
+    </thead>
+    <tbody id="quota-body">
+        <tr>
+            <td colspan="5">Menunggu data...</td>
+        </tr>
+    </tbody>
+</table>
+            </div>
+            <br>
+            <br>
+            <br>
+          <?php
+        }else{
+          ?>
+ <div class="container">
 
 
           
 
+<?php
+$sqlquery = "SELECT * FROM message";
+if ($result = mysqli_query($koneksi, $sqlquery)) {
+$row = mysqli_fetch_assoc($result);
+if($row['message']!=''){
+?>
+<div class="alert alert-danger" role="alert">
+  <strong> <h3><i class="fa fa-warning"></i> <?php echo $row['message']; ?></h3></strong>
+</div>
+<?php } } ?>
+
+
+<div class="row">
+
+  <?php
+  $sqlquery = "SELECT * FROM camera ORDER BY sort ASC";
+  if ($result = mysqli_query($koneksi, $sqlquery)) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    if($row["publish"]=="y") {
+  ?>
+
+  <div class="col-md-4">
+    <div class="card mb-4 box-shadow">
+      <?php
+        if($row["status"]=="up") {
+      ?>
+      <iframe style="width:100%;height:250px" src="<?php echo $row["embed"];?>?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <?php } else {
+       ?>
+      <img height="250" src="off.jpg">
+    <?php }
+    ?>
+      <div class="card-body">
+        <p class="card-text" style="text-align:center"><small><b><?php echo $row["description"];?></b></small></b></p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <?php
+}
+    }
+      mysqli_free_result($result);
+    }
+  ?>
+
+</div>
+</div>
+
+
           <?php
-          $sqlquery = "SELECT * FROM message";
-          if ($result = mysqli_query($koneksi, $sqlquery)) {
-          $row = mysqli_fetch_assoc($result);
-          if($row['message']!=''){
-          ?>
-		     <div class="alert alert-danger" role="alert">
-            <strong> <h3><i class="fa fa-warning"></i> <?php echo $row['message']; ?></h3></strong>
-          </div>
-        <?php } } ?>
-
-
-          <div class="row">
-
-            <?php
-            $sqlquery = "SELECT * FROM camera ORDER BY sort ASC";
-            if ($result = mysqli_query($koneksi, $sqlquery)) {
-            while ($row = mysqli_fetch_assoc($result)) {
-              if($row["publish"]=="y") {
-            ?>
-
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <?php
-                  if($row["status"]=="up") {
-                ?>
-                <iframe style="width:100%;height:250px" src="<?php echo $row["embed"];?>?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              <?php } else {
-                 ?>
-                <img height="250" src="off.jpg">
-              <?php }
-              ?>
-                <div class="card-body">
-                  <p class="card-text" style="text-align:center"><small><b><?php echo $row["description"];?></b></small></b></p>
-                </div>
-              </div>
-            </div>
+        }
+      ?>
 
        
-
-            <?php
-          }
-            	}
-            		mysqli_free_result($result);
-            	}
-            ?>
-
-          </div>
-        </div>
 		  <div  style="text-align:center">
         <center><a href="./monitor.php" class="btn btn-warning btn-md"><i class="fa fa-expand"></i> Lihat Versi Monitor</a><br><br><a href="https://play.google.com/store/apps/details?id=bengkaliskab.go.id.cctv"><img src="play.png" height="50"></a><br><br></center>
    <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
 <!-- Histats.com  START  (aync)-->
-<div>
-<h2>Informasi Booking Tiket</h2>
-<table id="customers">
-   <tr>
-    <th>No</th>
-    <th>Hari/Tanggal</th>
-    <th>Lokasi</th>
-    <th>Jumlah Boking</th>
-    <th>Sisa Quota</th>
-   </tr>
-   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Senin 20, Januari 2025</td>
-      <td>SEI SELARI - AIR PUTIH</td>
-      <td>230</td>
-      <td>70</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Senin 20, Januari 2025</td>
-      <td>AIR PUTIH - SEI SELARI</td>
-      <td>230</td>
-      <td>70</td>
-    </tr>
-   </tbody>
-</table>
-</div>
+
 <br>
 <br>
 <script type="text/javascript">var _Hasync= _Hasync|| [];
@@ -195,6 +234,59 @@ function redirectBasedOnDevice() {
 
 // Run the function when the page loads
 redirectBasedOnDevice();
+</script>
+
+<script>
+// Koneksi WebSocket
+const socket = new WebSocket('<?php echo $websocket ?>');
+
+socket.onopen = function() {
+    console.log("WebSocket Connected!");
+};
+
+socket.onmessage = function(event) {
+    try {
+        let data = JSON.parse(event.data);
+
+        if (data.type === "counter") {
+            console.log("Data Counter:", data);
+            // Update tampilan counter jika diperlukan
+        } else if (data.type === "table") {
+            console.log("Data Table:", data.data);
+            updateTable(data.data);
+        } else {
+            console.warn("Jenis data tidak dikenal:", data);
+        }
+    } catch (error) {
+        console.error("Error parsing WebSocket data:", error);
+    }
+};
+
+// 🔥 Fungsi untuk update tabel
+function updateTable(data) {
+    let tbody = document.querySelector("#customers tbody");
+    tbody.innerHTML = ""; // Hapus isi tabel lama
+
+    data.forEach((row, index) => {
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${formatTanggal(row.date)}</td>
+            <td>${row.location}</td>
+            <td><center>${row.count}</center></td>
+            <td><center>${row.quota}</center></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// 🔥 Fungsi untuk format tanggal
+function formatTanggal(dateString) {
+    let tanggal = new Date(dateString);
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return tanggal.toLocaleDateString('id-ID', options);
+}
+
 </script>
 
     

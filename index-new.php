@@ -10,8 +10,7 @@ include "connection.php";
     <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-
-    <title>Security Camera Shop</title>
+<title>CCTV BENGKALIS</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
@@ -179,7 +178,7 @@ include "connection.php";
         </div>
         <nav>
         <button class="active" onclick="showSection('cctv', this)">CCTV</button>
-        <button onclick="showSection('informasi', this)">Informasi Booking</button>
+        <button onclick="showSection('informasi', this)">Informasi Booking Tiket</button>
         <button onclick="showSection('wisata', this)">Wisata</button>
     </nav>
 
@@ -194,7 +193,7 @@ include "connection.php";
         </section>
 
         <section id="informasi" class="category">
-        <h2><span class="highlight">Informasi</span> Booking Roro Bengkalis</h2>
+        <h2><span class="highlight">Informasi</span> Booking Tiket Roro Bengkalis</h2>
         <table id="customers">
     <thead>
         <tr>
@@ -259,6 +258,19 @@ include "connection.php";
         
         
     </main>
+    <script>
+function redirectBasedOnDevice() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+
+    if (!isMobile) {
+        window.location.href = "index.php"; // Change to your mobile link
+    }
+}
+
+// Run the function when the page loads
+redirectBasedOnDevice();
+</script>
     <script>
 // Koneksi WebSocket
 const socket = new WebSocket('<?php echo $websocket ?>');
