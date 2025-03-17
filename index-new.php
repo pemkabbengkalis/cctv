@@ -261,7 +261,7 @@ include "connection.php";
     </main>
     <script>
 // Koneksi WebSocket
-const socket = new WebSocket(<?php echo $websocket ?>);
+const socket = new WebSocket('<?php echo $websocket ?>');
 
 socket.onopen = function() {
     console.log("WebSocket Connected!");
