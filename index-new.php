@@ -284,7 +284,7 @@ socket.onmessage = function(event) {
         let data = JSON.parse(event.data);
 
         if (data.type === "counter") {
-            console.log("Data Counter:", data);
+            //console.log("Data Counter:", data);
             // Update tampilan counter jika diperlukan
         } else if (data.type === "table") {
             console.log("Data Table:", data.data);
