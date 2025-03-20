@@ -13,7 +13,7 @@ $count = $_POST['count'];
 
 $sql = "SELECT * FROM counter WHERE date = ?";
 $stmt = $koneksi->prepare($sql);
-$stmt->bind_param("ss", $email, $date);
+$stmt->bind_param("ss",$date);
 $stmt->execute();
 $result = $stmt->get_result();
 
