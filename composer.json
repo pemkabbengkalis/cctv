@@ -13,6 +13,7 @@
     ],
     "require": {
         "cboden/ratchet": "^0.4.4",
-        "firebase/php-jwt": "^6.4"
+        "firebase/php-jwt": "^6.4",
+        "google/auth": "^1.46"
     }
 }

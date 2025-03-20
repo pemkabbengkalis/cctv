@@ -58,6 +58,20 @@ include "connection.php";
   text-decoration: none;
 }
     </style>
+
+<script>
+function redirectBasedOnDevice() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+
+    if (isMobile) {
+        window.location.href = "index-new.php"; // Change to your mobile link
+    }
+}
+
+// Run the function when the page loads
+redirectBasedOnDevice();
+</script>
   </head>
 
   <body>
@@ -97,8 +111,11 @@ include "connection.php";
           else if(isset($_GET['page']) && 'booking' == $_GET['page']){
           ?>
             <div class="container">
-            <h2>Informasi Booking Tiket</h2>
-            Pembookingan Tiket bisa kunjungi link di bawah ini 
+            <h2>Informasi Booking Tiket Kendaraan Roda 4 (Mobil)</h2>
+            Klik tombol ini  : <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn btn-sm btn-danger"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a>
+            <br>
+            <br>
+            <br>
             <table id="customers">
     <thead>
         <tr>
@@ -222,19 +239,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
     <script src="./cctv_files/bootstrap.min.js.download"></script>
     <script src="./cctv_files/holder.min.js.download"></script>
 
-    <script>
-function redirectBasedOnDevice() {
-    var userAgent = navigator.userAgent.toLowerCase();
-    var isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-
-    if (isMobile) {
-        window.location.href = "index-new.php"; // Change to your mobile link
-    }
-}
-
-// Run the function when the page loads
-redirectBasedOnDevice();
-</script>
+    
 
 <script>
 // Koneksi WebSocket
