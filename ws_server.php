@@ -30,7 +30,13 @@ class CounterWebSocket implements MessageComponentInterface {
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        // Tidak perlu permintaan dari client, karena update dilakukan secara berkala
+        $data = json_decode($msg, true);
+    
+        if (isset($data['date'])) {
+            $selectedDate = $data['date'];
+            echo "Fetching counter for date: " . $selectedDate . "\n";
+            $this->broadcastCounterData($selectedDate);
+        }
     }
 
     public function onClose(ConnectionInterface $conn) {
@@ -43,23 +49,28 @@ class CounterWebSocket implements MessageComponentInterface {
         $conn->close();
     }
 
-    public function broadcastCounterData() {
-        $query = "SELECT date, SUM(count) as total_count FROM counter GROUP BY date";
-        $result = $this->db->query($query);
-
+    public function broadcastCounterData($selectedDate) {
+        $query = "SELECT date, count FROM counter WHERE date = ? ORDER BY updated_at DESC LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $selectedDate);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
         while ($row = $result->fetch_assoc()) {
             $payload = json_encode([
                 "type" => "counter",
                 "date" => $row['date'],
                 "location" => 'AIR PUTIH - SEI SELARI',
-                "count" => $row['total_count']
+                "count" => (int) $row['count'] // Pastikan tipe data integer
             ]);
-
+    
             foreach ($this->clients as $client) {
                 $client->send($payload);
             }
         }
     }
+    
+    
 
     public function broadcastTableData() {
         $query = "SELECT date, location, SUM(count) as total_count FROM counter GROUP BY date, location";
@@ -98,7 +109,7 @@ $context = [
 ];
 
 // 🔹 Gunakan ReactPHP Secure Server (SSL)
-$socket = new Server('0.0.0.0:8081', $loop);
+$socket = new Server('103.166.161.154:8443', $loop);
 $secureSocket = new SecureServer($socket, $loop, $context);
 
 $counterServer = new CounterWebSocket();
@@ -113,7 +124,6 @@ $server = new IoServer(
 
 // 🔹 Timer untuk update real-time
 $loop->addPeriodicTimer(1, function() use ($counterServer) {
-    $counterServer->broadcastCounterData();
     $counterServer->broadcastTableData();
 });
 
