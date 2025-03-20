@@ -2,7 +2,7 @@
 include "../connection.php";
 session_start();
 if (!isset($_SESSION['user_email'])) {
-    header("Location: login.php");
+    echo json_encode(["error" => "Unauthorized"]);
     exit();
 }
 ?>
@@ -70,106 +70,97 @@ if (!isset($_SESSION['user_email'])) {
     </div>
 
     <script>
-        document.getElementById('date').addEventListener('change', resetCounter);
-        let count = 0;
-        const userEmail = "<?php echo $_SESSION['user_email']; ?>";
+       document.getElementById('date').addEventListener('change', resetCounter);
+const userEmail = "<?php echo $_SESSION['user_email']; ?>";
+let socket = new WebSocket('<?php echo $websocket ?>');
+let count = 0; // Inisialisasi count
 
-        function syncCounter() {
-            document.getElementById('counter').textContent = count;
-        }
+socket.onopen = function() {
+    console.log("Connected to WebSocket");
+};
 
-        function updateCounter() {
-            document.getElementById('counter').textContent = count;
-            saveCounter();
-        }
-
-        function increment() {
-            count++;
-            updateCounter();
-        }
-
-        function decrement() {
-            if (count > 0) {
-                count--;
-                updateCounter();
-            }
-        }
-
-        function resetCounter() {
-            const dateValue = document.getElementById('date').value;
-            const incrementBtn = document.getElementById('increment-btn');
-            const decrementBtn = document.getElementById('decrement-btn');
-            
-            if (dateValue) {
-                incrementBtn.classList.remove('disabled');
-                decrementBtn.classList.remove('disabled');
-                fetchCounter(dateValue);
-            } else {
-                incrementBtn.classList.add('disabled');
-                decrementBtn.classList.add('disabled');
-                count = 0;
-                updateCounter();
-            }
-        }
-
-        function saveCounter() {
-          
-            const dateValue = document.getElementById('date').value;
-            if (!dateValue) return;
-
-            $.ajax({
-                url: "save_counter.php",
-                type: "POST",
-                data: { email: userEmail, date: dateValue, count: count },
-                success: function(response) {
-                    console.log("Counter saved:", response);
-                }
-            });
-       
-            
-        }
-
-        function fetchCounter(date) {
-            $.ajax({
-                url: "get_counter.php",
-                type: "GET",
-                data: { email: userEmail, date: date },
-                success: function(response) {
-                    const data = JSON.parse(response);
-                    count = data.count || 0;
-                    updateCounter();
-                }
-            });
-        }
-
-       
-    </script>
-
-<script>
-    let socket = new WebSocket('<?php echo $websocket ?>');
-
-    socket.onopen = function() {
-        console.log("Connected to WebSocket");
-    };
-
-    socket.onmessage = function(event) {
-        const data = JSON.parse(event.data);
+socket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    if (data.type === "counter") {
         if (data.date === document.getElementById('date').value) {
             count = data.count;
-            console.log("TEST");
+            console.log("Hasil dari server:", count);
             syncCounter();
         }
-    };
-
-    function fetchCounter(date) {
-        if (socket.readyState === WebSocket.OPEN) {
-            socket.send(JSON.stringify({ date: date }));
-        }
     }
+};
 
-    document.getElementById('date').addEventListener('change', function() {
-        fetchCounter(this.value);
-    });
+function fetchCounter(date) {
+    if (socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({ date: date }));
+    } else {
+        console.error("WebSocket not open. Retrying in 1s...");
+        setTimeout(() => fetchCounter(date), 1000);
+    }
+}
+
+function resetCounter() {
+    const dateValue = document.getElementById('date').value;
+    const incrementBtn = document.getElementById('increment-btn');
+    const decrementBtn = document.getElementById('decrement-btn');
+
+    if (dateValue) {
+        incrementBtn.classList.remove('disabled');
+        decrementBtn.classList.remove('disabled');
+        fetchCounter(dateValue);
+    } else {
+        incrementBtn.classList.add('disabled');
+        decrementBtn.classList.add('disabled');
+        count = 0;
+        updateCounter();
+    }
+}
+
+function syncCounter() {
+    document.getElementById('counter').textContent = parseInt(count, 10);
+}
+
+function updateCounter() {
+    document.getElementById('counter').textContent = parseInt(count, 10);
+    saveCounter();
+}
+
+function increment() {
+    count = parseInt(document.getElementById('counter').textContent, 10) || 0;
+    count++;
+    updateCounter();
+}
+
+function decrement() {
+    count = parseInt(document.getElementById('counter').textContent, 10) || 0;
+    if (count > 0) {
+        count--;
+        updateCounter();
+    }
+}
+
+function saveCounter() {
+    const dateValue = document.getElementById('date').value;
+    const countlast = parseInt(document.getElementById('counter').textContent, 10) || 0;
+
+    if (countlast < 300) {
+        if (!dateValue) return;
+
+        $.ajax({
+            url: "save_counter.php",
+            type: "POST",
+            data: { email: userEmail, date: dateValue, count: countlast },
+            success: function(response) {
+                console.log("Counter saved:", response);
+            }
+        });
+    }
+}
+
+document.getElementById('date').addEventListener('change', function() {
+    fetchCounter(this.value);
+});
+
 </script>
 
 </body>
