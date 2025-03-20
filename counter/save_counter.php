@@ -18,19 +18,20 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    // Update existing record
+    // Update record dengan nilai baru dari inputan
     $sql = "UPDATE counter SET count = ?, updated_at = NOW() WHERE date = ?";
     $stmt = $koneksi->prepare($sql);
-    $stmt->bind_param("is", $count,  $date);
+    $stmt->bind_param("is", $count, $date);
 } else {
-    // Insert new record
+    // Insert jika belum ada data
     $sql = "INSERT INTO counter (email, date, count) VALUES (?, ?, ?)";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ssi", $email, $date, $count);
 }
 
+
 if ($stmt->execute()) {
-    echo json_encode(["success" => true]);
+    echo json_encode(["success" => $count]);
 } else {
     echo json_encode(["error" => "Database error"]);
 }
