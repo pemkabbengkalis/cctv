@@ -1,7 +1,8 @@
 <?php
 require '../vendor/autoload.php';
 
-use Google\Auth\AccessToken;
+use Firebase\JWT\JWT;
+use Firebase\JWT\JWK;
 
 header('Content-Type: application/json');
 
@@ -21,16 +22,34 @@ if (!$idToken) {
 }
 
 try {
-    // Gunakan Google Auth untuk verifikasi token
-    $auth = new AccessToken();
-    $payload = $auth->verify($idToken, ['audience' => $googleClientId]);
+    // Ambil JWK dari Google
+    $jwks = file_get_contents('https://www.googleapis.com/oauth2/v3/certs');
 
-    if (!$payload) {
-        echo json_encode(["error" => "Token tidak valid"]);
+    if (!$jwks) {
+        echo json_encode(["error" => "Gagal mengambil Google public keys"]);
         exit;
     }
 
-    $userEmail = $payload['email'] ?? '';
+    $keys = json_decode($jwks, true);
+
+    // Debug isi JWK
+    file_put_contents('debug_jwk.json', json_encode($keys, JSON_PRETTY_PRINT));
+
+    if (!isset($keys['keys'])) {
+        echo json_encode(["error" => "Format JWK tidak valid", "debug" => $keys]);
+        exit;
+    }
+
+    // Decode token
+    $decoded = JWT::decode($idToken, JWK::parseKeySet($keys));
+
+    // Cek apakah token cocok dengan client ID aplikasi
+    if ($decoded->aud !== $googleClientId) {
+        echo json_encode(["error" => "Client ID tidak cocok"]);
+        exit;
+    }
+
+    $userEmail = $decoded->email ?? '';
 
     if (!in_array($userEmail, $allowedEmails)) {
         echo json_encode(["error" => "Akses ditolak"]);
@@ -42,5 +61,5 @@ try {
 
     echo json_encode(["success" => true, "email" => $userEmail]);
 } catch (Exception $e) {
-    echo json_encode(["error" => "Token tidak valid", "message" => $e->getMessage()]);
+    echo json_encode(["error" => "Token tidak valid: " . $e->getMessage()]);
 }
