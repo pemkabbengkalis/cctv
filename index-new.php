@@ -138,6 +138,11 @@ include "connection.php";
         .gcse-search{
             width:100%;
         }
+
+        .table-container {
+    width: 100%;
+    overflow-x: auto; /* Aktifkan horizontal scroll jika tabel melebihi width */
+  }
         #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -207,6 +212,7 @@ include "connection.php";
         <br>
         <br>
         <br>
+        <div class="table-container">
         <table id="customers">
     <thead>
         <tr>
@@ -223,6 +229,8 @@ include "connection.php";
         </tr>
     </tbody>
 </table>
+        </div>
+       
 <br>
 <center><p style="color:grey">Data di atas ditampilkan berdasarkan jumlah inputan operator</p></center>
         </section>
