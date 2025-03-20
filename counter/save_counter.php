@@ -13,7 +13,7 @@ $count = $_POST['count'];
 
 $sql = "SELECT * FROM counter WHERE date = ?";
 $stmt = $koneksi->prepare($sql);
-$stmt->bind_param("ss",$date);
+$stmt->bind_param("s",$date);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
     // Update existing record
     $sql = "UPDATE counter SET count = ?, updated_at = NOW() WHERE date = ?";
     $stmt = $koneksi->prepare($sql);
-    $stmt->bind_param("iss", $count, $email, $date);
+    $stmt->bind_param("is", $count,  $date);
 } else {
     // Insert new record
     $sql = "INSERT INTO counter (email, date, count) VALUES (?, ?, ?)";
