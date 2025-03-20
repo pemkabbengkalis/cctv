@@ -223,6 +223,8 @@ include "connection.php";
         </tr>
     </tbody>
 </table>
+<br>
+<center><p style="color:grey">Data di atas ditampilkan berdasarkan jumlah inputan operator</p></center>
         </section>
         
         <section id="cctv" class="category">
