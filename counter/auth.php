@@ -61,6 +61,6 @@ try {
 
     echo json_encode(["success" => true, "email" => $userEmail]);
 } catch (Exception $e) {
-    echo json_encode(["error" => "Token tidak valid", "message" => $e->getMessage()]);
+    echo json_encode(["error" => "Token tidak valid :".$e->getMessage(), "message" => $e->getMessage()]);
 }
 ?>
