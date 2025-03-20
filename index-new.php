@@ -8,6 +8,7 @@ include "connection.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4285f4" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <title>CCTV BENGKALIS</title>
@@ -159,6 +160,14 @@ include "connection.php";
   background-color: #04AA6D;
   color: white;
 }
+
+.btn-booking {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
     </style>
         <script async src="https://cse.google.com/cse.js?cx=67f658fbc12384b7e">
         </script>
@@ -193,7 +202,11 @@ include "connection.php";
         </section>
 
         <section id="informasi" class="category">
-        <h2><span class="highlight">Informasi</span> Booking Tiket Roro Bengkalis</h2>
+        <h2><span class="highlight">Informasi</span> Booking Tiket Kendaraan Roda 4 (Mobil)</h2>
+        <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn-booking"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a>
+        <br>
+        <br>
+        <br>
         <table id="customers">
     <thead>
         <tr>
