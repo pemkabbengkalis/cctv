@@ -121,7 +121,7 @@ redirectBasedOnDevice();
         <tr>
             <th>No</th>
             <th>Hari/Tanggal</th>
-            <th>Lokasi</th>
+            <th>Tujuan</th>
             <th>Jumlah Booking</th>
             <th>Sisa Quota</th>
         </tr>
