@@ -232,7 +232,7 @@ include "connection.php";
         </div>
        
 <br>
-<center><p style="color:grey">Data di atas ditampilkan berdasarkan jumlah inputan operator</p></center>
+<center><p style="color:grey">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
         </section>
         
         <section id="cctv" class="category">
