@@ -134,6 +134,7 @@ redirectBasedOnDevice();
 </table>
             </div>
             <br>
+            <center><p style="color:grey">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
             <br>
             <br>
           <?php
