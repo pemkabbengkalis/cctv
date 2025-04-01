@@ -208,7 +208,7 @@ include "connection.php";
 
         <section id="informasi" class="category">
         <h2><span class="highlight">Informasi</span> Booking Tiket Kendaraan Roda 4 (Mobil)</h2>
-        <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn-booking"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a>
+        <!-- <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn-booking"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a> -->
         <br>
         <br>
         <br>
@@ -220,7 +220,7 @@ include "connection.php";
             <th>Hari/Tanggal</th>
             <th>Tujuan</th>
             <th>Jumlah Booking</th>
-            <th>Sisa Quota</th>
+            <th>Quota Non Booking</th>
         </tr>
     </thead>
     <tbody id="quota-body">
@@ -232,7 +232,7 @@ include "connection.php";
         </div>
        
 <br>
-<center><p style="color:grey">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
+<center><p style="color:black;font-weight:bold">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
         </section>
         
         <section id="cctv" class="category">

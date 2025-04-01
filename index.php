@@ -112,7 +112,7 @@ redirectBasedOnDevice();
           ?>
             <div class="container">
             <h2>Informasi Booking Tiket Kendaraan Roda 4 (Mobil)</h2>
-            Klik tombol ini  : <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn btn-sm btn-danger"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a>
+            <!-- Klik tombol ini  : <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn btn-sm btn-danger"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a> -->
             <br>
             <br>
             <br>
@@ -123,7 +123,7 @@ redirectBasedOnDevice();
             <th>Hari/Tanggal</th>
             <th>Tujuan</th>
             <th>Jumlah Booking</th>
-            <th>Sisa Quota</th>
+            <th>Quota Non Booking</th>
         </tr>
     </thead>
     <tbody id="quota-body">
@@ -134,7 +134,7 @@ redirectBasedOnDevice();
 </table>
             </div>
             <br>
-            <center><p style="color:grey">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
+            <center><p style="color:black;font-weight:bold">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
             <br>
             <br>
           <?php
