@@ -321,22 +321,46 @@ socket.onmessage = function(event) {
 };
 
 // 🔥 Fungsi untuk update tabel
+// function updateTable(data) {
+//     let tbody = document.querySelector("#customers tbody");
+//     tbody.innerHTML = ""; // Hapus isi tabel lama
+
+//     data.forEach((row, index) => {
+//         let tr = document.createElement("tr");
+//         tr.innerHTML = `
+//             <td>${index + 1}</td>
+//             <td>${formatTanggal(row.date)}</td>
+//             <td>${row.location}</td>
+//             <td>${row.count}</td>
+//             <td>${row.quota}</td>
+//         `;
+//         tbody.appendChild(tr);
+//     });
+// }
+
 function updateTable(data) {
     let tbody = document.querySelector("#customers tbody");
     tbody.innerHTML = ""; // Hapus isi tabel lama
 
     data.forEach((row, index) => {
+        let tanggal = new Date(row.date);
+        let hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' });
+
+        // Cek jika hari adalah Jumat
+        let quotaDisplay = (hari.toLowerCase() === "jumat") ? "TERISI PENUH" : row.quota;
+
         let tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${index + 1}</td>
             <td>${formatTanggal(row.date)}</td>
             <td>${row.location}</td>
             <td>${row.count}</td>
-            <td>${row.quota}</td>
+            <td>${quotaDisplay}</td>
         `;
         tbody.appendChild(tr);
     });
 }
+
 
 // 🔥 Fungsi untuk format tanggal
 function formatTanggal(dateString) {
