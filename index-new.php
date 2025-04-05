@@ -344,10 +344,11 @@ function updateTable(data) {
 
     data.forEach((row, index) => {
         let tanggal = new Date(row.date);
-        let hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' });
+        let hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' }).toLowerCase();
 
-        // Cek jika hari adalah Jumat
-        let quotaDisplay = (hari.toLowerCase() === "jumat") ? "TERISI PENUH" : row.quota;
+        // Cek jika hari adalah Jumat, Sabtu, atau Minggu
+        let isWeekendOrFriday = ["jumat", "sabtu", "minggu"].includes(hari);
+        let quotaDisplay = isWeekendOrFriday ? "TERISI PENUH" : row.quota;
 
         let tr = document.createElement("tr");
         tr.innerHTML = `
