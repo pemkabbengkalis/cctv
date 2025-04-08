@@ -347,8 +347,8 @@ function updateTable(data) {
         let hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' }).toLowerCase();
 
         // Cek jika hari adalah Jumat, Sabtu, atau Minggu
-        let isWeekendOrFriday = ["jumat", "sabtu", "minggu","senin"].includes(hari);
-        let quotaDisplay = isWeekendOrFriday ? "TERISI PENUH" : row.quota;
+        let isWeekendOrFullDate = ["jumat", "sabtu", "minggu", "senin"].includes(hari) || dateStr === "2025-04-08";
+        let quotaDisplay = isWeekendOrFullDate ? "TERISI PENUH" : row.quota;
 
         let tr = document.createElement("tr");
         tr.innerHTML = `
