@@ -294,7 +294,10 @@ function updateTable(data) {
         let tanggal = new Date(row.date);
         let hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' }).toLowerCase();
 
-        // Cek jika hari adalah Jumat, Sabtu, atau Minggu
+        // Konversi ke format YYYY-MM-DD agar bisa dibandingkan
+        let dateStr = tanggal.toISOString().split("T")[0];
+
+        // Cek jika hari adalah Jumat, Sabtu, Minggu, Senin, atau Selasa 8 April 2025
         let isWeekendOrFullDate = ["jumat", "sabtu", "minggu", "senin"].includes(hari) || dateStr === "2025-04-08";
         let quotaDisplay = isWeekendOrFullDate ? "TERISI PENUH" : row.quota;
 
@@ -309,6 +312,7 @@ function updateTable(data) {
         tbody.appendChild(tr);
     });
 }
+
 
 
 // 🔥 Fungsi untuk format tanggal
