@@ -192,7 +192,7 @@ include "connection.php";
         </div>
         <nav>
         <button class="active" onclick="showSection('cctv', this)">CCTV</button>
-        <button onclick="showSection('informasi', this)">Informasi Booking</button>
+        <!-- <button onclick="showSection('informasi', this)">Informasi Booking</button> -->
         <button onclick="showSection('wisata', this)">Wisata</button>
     </nav>
 
@@ -206,10 +206,10 @@ include "connection.php";
         <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d510462.89001508616!2d101.66618290734127!3d1.733987565257085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1swisata%20kabupaten%20bengkalis!5e0!3m2!1sid!2sid!4v1741760292316!5m2!1sid!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
 
-        <section id="informasi" class="category">
-        <h2><span class="highlight">Informasi</span> Booking Tiket Kendaraan Roda 4 (Mobil)</h2>
+        <!-- <section id="informasi" class="category">
+        <h2><span class="highlight">Informasi</span> Booking Tiket Kendaraan Roda 4 (Mobil)</h2> -->
         <!-- <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn-booking"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a> -->
-        <br>
+        <!-- <br>
         <br>
         <br>
         <div class="table-container">
@@ -233,7 +233,7 @@ include "connection.php";
        
 <br>
 <center><p style="color:black;font-weight:bold">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
-        </section>
+        </section> -->
         
         <section id="cctv" class="category">
             <h2><span class="highlight">Daftar</span> CCTV</h2>

@@ -87,7 +87,7 @@ redirectBasedOnDevice();
 
           <div style="display:flex;gap:5px">
           <a class="nav-menu-a" href="/" style="color:white;text-decoration: none;"><i class="fa-solid fa-video"></i> CCTV</a>
-          <a class="nav-menu-a" href="?page=booking" style="color:white;text-decoration: none;"><i class="fa-solid fa-calendar-days"></i> Informasi Booking</a>
+          <!-- <a class="nav-menu-a" href="?page=booking" style="color:white;text-decoration: none;"><i class="fa-solid fa-calendar-days"></i> Informasi Booking</a> -->
           <a class="nav-menu-a" href="?page=wisata" style="color:white;text-decoration: none;"><i class="fa-solid fa-map-location-dot"></i> Wisata Bengkalis</a>
           </div>
 
@@ -110,10 +110,10 @@ redirectBasedOnDevice();
          }
           else if(isset($_GET['page']) && 'booking' == $_GET['page']){
           ?>
-            <div class="container">
+            <!-- <div class="container">
             <h2>Informasi Booking Tiket Kendaraan Roda 4 (Mobil)</h2>
             <!-- Klik tombol ini  : <a target="_blank" href="https://forms.gle/gLJkJBwVPWFCF16b9" class="btn btn-sm btn-danger"><i class="fa-solid fa-ticket"></i> Booking Sakarang</a> -->
-            <br>
+            <!-- <br>
             <br>
             <br>
             <table id="customers">
@@ -136,7 +136,7 @@ redirectBasedOnDevice();
             <br>
             <center><p style="color:black;font-weight:bold">Data di update terakhir saat penutupan pemesanan tiket tanggal 30 maret 2025</p></center>
             <br>
-            <br>
+            <br> -->
           <?php
         }else{
           ?>
